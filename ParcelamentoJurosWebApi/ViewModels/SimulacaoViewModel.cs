@@ -21,9 +21,21 @@ namespace ParcelamentoJurosWebApi.ViewModels {
             if (origin == null)
                 return;
 
+            var day = origin.DataCompra.Value.Day;
+            var dia = day.ToString();
+            if (day < 10)
+                dia = $"0{day.ToString()}";
+
+            var month = origin.DataCompra.Value.Month;
+            var mes = month.ToString();
+            if (month < 10)
+                mes = $"0{month.ToString()}";
+
+            var ano = origin.DataCompra.Value.Year;
+
             ValorJuros = origin.Juros;
             ValorTotal = origin.Total;
-            DataCompra = origin.DataCompra.Value.ToShortDateString();
+            DataCompra = $"{dia}/{mes}/{ano}";
         }
     }
 }
