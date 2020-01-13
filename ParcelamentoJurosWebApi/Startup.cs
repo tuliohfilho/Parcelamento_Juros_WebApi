@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ParcelamentoJurosWebApi.Infraestrutura;
 using ParcelamentoJurosWebApi.Repositories;
 using ParcelamentoJurosWebApi.Repositories.Impl;
+using ParcelamentoJurosWebApi.Services;
+using ParcelamentoJurosWebApi.Services.Impl;
 
 namespace ParcelamentoJurosWebApi {
     public class Startup
@@ -43,8 +45,10 @@ namespace ParcelamentoJurosWebApi {
 
             services.AddDbContext<ParcelamentoJurosContext>(o => o.UseSqlServer(connectionString));
 
+            services.AddScoped<IParcelaService, ParcelaService>();
             services.AddScoped<IParcelaRepository, ParcelaRepository>();
-            services.AddScoped<ISimuladorRepository, SimuladorRepository>();
+            services.AddScoped<ISimulacaoService, SimulacaoService>();
+            services.AddScoped<ISimulacaoRepository, SimulacaoRepository>();
 
             services.AddMvc();
         }
