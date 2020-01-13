@@ -19,8 +19,20 @@ namespace ParcelamentoJurosWebApi.ViewModels {
         public int QuantidadeParecelas { get; set; }
 
         [Required]
-        [JsonProperty("dataCompra")]
-        public DateTime? DataCompra { get; set; }
+        [JsonProperty("diaCompra")]
+        public int DiaCompra { get; set; }
+
+        [Required]
+        [JsonProperty("mesCompra")]
+        public int MesCompra { get; set; }
+
+        [Required]
+        [JsonProperty("anoCompra")]
+        public int AnoCompra { get; set; }
+
+        //[Required]
+        //[JsonProperty("dataCompra")]
+        //public DateTime? DataCompra { get; set; }
 
         [JsonProperty("cpfComprador")]
         public string CpfComprador { get; set; }

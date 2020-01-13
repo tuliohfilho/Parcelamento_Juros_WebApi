@@ -38,8 +38,9 @@ namespace ParcelamentoJurosWebApi.Controllers.V1 {
                     return ErrorMessage();
 
                 var simulacao = Mapper.Map<Simulacao>(viewModel);
-                simulacao = _simulacaoService.SimularParcelas(simulacao);
+                simulacao.DataCompra = new DateTime(viewModel.AnoCompra, viewModel.MesCompra, viewModel.DiaCompra);
 
+                simulacao = _simulacaoService.SimularParcelas(simulacao);
                 if (viewModel.SalvarSimulacao)
                     simulacao = _simulacaoService.Save(simulacao);
 
