@@ -2,18 +2,24 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ParcelamentoJurosWebApi.Infraestrutura;
+using ParcelamentoJurosWebApi.Repositories;
+using ParcelamentoJurosWebApi.Repositories.Impl;
 
 namespace ParcelamentoJurosWebApi {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
+            Environment = environment;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,6 +36,15 @@ namespace ParcelamentoJurosWebApi {
             services.Configure<MvcOptions>(options => {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAll"));
             });
+
+            var connectionString = Configuration["connectionStrings:parcelamentoJuros"];
+            if (Environment.IsProduction())
+                connectionString = Configuration["connectionStrings:parcelamentoJurosProd"];
+
+            services.AddDbContext<ParcelamentoJurosContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<IParcelaRepository, ParcelaRepository>();
+            services.AddScoped<ISimuladorRepository, SimuladorRepository>();
 
             services.AddMvc();
         }

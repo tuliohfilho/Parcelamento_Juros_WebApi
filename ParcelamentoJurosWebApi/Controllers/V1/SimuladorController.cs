@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParcelamentoJurosWebApi.Infraestrutura;
 using System;
 using System.Linq;
 
 namespace ParcelamentoJurosWebApi.Controllers.V1 {
     [Route("api/v1/[controller]")]
     public class SimuladorController : Controller {
+        private readonly ParcelamentoJurosContext _context;
+
+        public SimuladorController(ParcelamentoJurosContext context) {
+            _context = context;
+        }
+
         [HttpGet("cpf/{cpf}")]
         public IActionResult Get() {
             var simulacoes = Enumerable.Range(1, 5)

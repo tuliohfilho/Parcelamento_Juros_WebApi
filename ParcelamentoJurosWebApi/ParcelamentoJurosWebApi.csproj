@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\Impl\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
