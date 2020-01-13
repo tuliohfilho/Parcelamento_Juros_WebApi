@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using ParcelamentoJurosWebApi.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ParcelamentoJurosWebApi.ViewModels {
-    public class SimuladorPostViewModel
+    public class SimulacaoPostViewModel
     {
         [Required]
         [JsonProperty("valorTotal")]

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ParcelamentoJurosWebApi.Infraestrutura;
+using ParcelamentoJurosWebApi.Infraestrutura.AutoMapper;
 using ParcelamentoJurosWebApi.Repositories;
 using ParcelamentoJurosWebApi.Repositories.Impl;
 using ParcelamentoJurosWebApi.Services;
@@ -26,6 +27,8 @@ namespace ParcelamentoJurosWebApi {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperContainer.Initialize();
+
             //Cors
             services.AddCors(options =>
                 options.AddPolicy(

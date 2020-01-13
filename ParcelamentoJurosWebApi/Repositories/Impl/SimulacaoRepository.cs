@@ -1,7 +1,9 @@
-﻿using ParcelamentoJurosWebApi.Infraestrutura;
+﻿using Microsoft.EntityFrameworkCore;
+using ParcelamentoJurosWebApi.Infraestrutura;
 using ParcelamentoJurosWebApi.Models;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace ParcelamentoJurosWebApi.Repositories.Impl {
     public class SimulacaoRepository : ISimulacaoRepository {
@@ -13,26 +15,9 @@ namespace ParcelamentoJurosWebApi.Repositories.Impl {
 
 
         public IQueryable<Simulacao> ObterPorCpf(string cpf) {
-            var simulacoes = Enumerable.Range(1, 5)
-                              .Select(simulacao => new Simulacao {
-                                  Parcelas = Enumerable.Range(1, 5)
-                                              .Select(parcela => new Parcela {
-                                                  Id = parcela,
-                                                  Valor = 35.89M,
-                                                  Juros = 12.7854M,
-                                                  Vencimento = DateTime.Now,
-                                              }).ToList(),
-                                  Id = simulacao,
-                                  ValorCompra = 358.00M,
-                                  Juros = 12.7854M,
-                                  Total = 358.98M,
-                                  QuantidadeParecelas = 10,
-                                  DataCompra = DateTime.Now
-                              }).ToList();
-
-            return simulacoes.AsQueryable();
+            return Query(x => x.CpfComprador.Equals(cpf))
+                    .Include(x => x.Parcelas);
         }
-
 
         public Simulacao Save(Simulacao simulacao) {
             _context.Simulacao.Add(simulacao);
@@ -42,8 +27,14 @@ namespace ParcelamentoJurosWebApi.Repositories.Impl {
             return simulacao;
         }
 
-        public void SaveChanges() {
+
+        private IQueryable<Simulacao> Query(Expression<Func<Simulacao, bool>> filter) => 
+            List().Where(filter);
+
+        private IQueryable<Simulacao> List() =>
+            _context.Set<Simulacao>();
+
+        private void SaveChanges() => 
             _context.SaveChanges();
-        }
     }
 }
