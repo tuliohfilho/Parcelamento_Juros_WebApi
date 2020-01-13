@@ -30,10 +30,6 @@ namespace ParcelamentoJurosWebApi.ViewModels {
         [JsonProperty("anoCompra")]
         public int AnoCompra { get; set; }
 
-        //[Required]
-        //[JsonProperty("dataCompra")]
-        //public DateTime? DataCompra { get; set; }
-
         [JsonProperty("cpfComprador")]
         public string CpfComprador { get; set; }
 
