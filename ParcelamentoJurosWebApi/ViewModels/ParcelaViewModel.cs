@@ -15,9 +15,13 @@ namespace ParcelamentoJurosWebApi.ViewModels {
 
             var day = origin.Vencimento.Value.Day;
             var dia = day.ToString();
+            if (day < 10)
+                dia = $"0{day.ToString()}";
 
             var month = origin.Vencimento.Value.Month;
             var mes = month.ToString();
+            if (month < 10)
+                mes = $"0{month.ToString()}";
 
             var ano = origin.Vencimento.Value.Year;
 
