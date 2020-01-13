@@ -34,7 +34,7 @@ namespace ParcelamentoJurosWebApi.Services.Impl {
                             var vencimento = dataCompra;
 
                             if (controle > 0)
-                                vencimento = vencimento.AddDays(controle);
+                                vencimento = vencimento.AddMonths(controle);
 
                             controle++;
 
