@@ -11,6 +11,7 @@ namespace ParcelamentoJurosWebApi.Models {
         public decimal Total { get; set; }
         public int QuantidadeParecelas { get; set; }
         public DateTime? DataCompra { get; set; }
+        public string CpfComprador { get; set; }
 
 
         public ICollection<Parcela> Parcelas { get; set; }

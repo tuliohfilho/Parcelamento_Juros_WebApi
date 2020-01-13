@@ -38,6 +38,11 @@ namespace ParcelamentoJurosWebApi.Infraestrutura {
             entity.Property(p => p.DataCompra)
               .HasColumnName("DataCompra")
               .HasColumnType("datetime2(7)");
+
+            entity.Property(x => x.CpfComprador)
+                .HasColumnName("CpfComprador")
+                .HasMaxLength(14)
+                .HasColumnType("nvarchar(14)");
         }
 
         private static void ParcelaMapping(EntityTypeBuilder<Parcela> entity) {

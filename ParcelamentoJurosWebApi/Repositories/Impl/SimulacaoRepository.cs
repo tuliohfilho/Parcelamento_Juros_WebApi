@@ -32,5 +32,18 @@ namespace ParcelamentoJurosWebApi.Repositories.Impl {
 
             return simulacoes.AsQueryable();
         }
+
+
+        public Simulacao Save(Simulacao simulacao) {
+            _context.Simulacao.Add(simulacao);
+
+            SaveChanges();
+
+            return simulacao;
+        }
+
+        public void SaveChanges() {
+            _context.SaveChanges();
+        }
     }
 }

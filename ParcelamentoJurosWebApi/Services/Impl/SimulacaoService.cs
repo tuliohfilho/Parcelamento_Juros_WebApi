@@ -12,5 +12,8 @@ namespace ParcelamentoJurosWebApi.Services.Impl {
 
         public IQueryable<Simulacao> ObterPorCpf(string cpf) =>
             _repository.ObterPorCpf(cpf);
+
+        public Simulacao Save(Simulacao simulacao) => 
+            _repository.Save(simulacao);
     }
 }
