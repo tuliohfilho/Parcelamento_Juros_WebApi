@@ -13,9 +13,21 @@ namespace ParcelamentoJurosWebApi.ViewModels {
             if (origin == null)
                 return;
 
+            var day = origin.Vencimento.Value.Day;
+            var month = origin.Vencimento.Value.Month;
+            var ano = origin.Vencimento.Value.Year;
+
+            var dia = day.ToString();
+            if (day < 10)
+                dia = $"0{dia}";
+
+            var mes = month.ToString();
+            if (month < 10)
+                mes = $"0{mes}";
+
             ValorParcela = origin.Valor;
             ValorJuros = origin.Juros;
-            DataVencimento = origin.Vencimento.Value.ToShortDateString();
+            DataVencimento = $"{dia}/{mes}/{ano}";
         }
     }
 }
