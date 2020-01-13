@@ -20,7 +20,7 @@ namespace ParcelamentoJurosWebApi.ViewModels {
 
         [Required]
         [JsonProperty("dataCompra")]
-        public string DataCompra { get; set; }
+        public string DataCompraTexto { get; set; }
 
         [JsonProperty("cpfComprador")]
         public string CpfComprador { get; set; }
